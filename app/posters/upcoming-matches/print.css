@@ -1,0 +1,53 @@
+@media print {
+  /* Hide form and UI elements */
+  .no-print,
+  form,
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  /* Ensure poster fills the page */
+  .poster-container {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Optimize match rows for handwriting */
+  .handwriting-match {
+    min-height: 30mm;
+  }
+
+  /* Make dotted lines subtle (60% opacity) */
+  .border-dotted {
+    opacity: 0.6;
+  }
+
+  /* Make placeholder text very light */
+  .text-gray-300 {
+    opacity: 0.3;
+  }
+
+  /* Ensure checkbox is clear */
+  .checkbox-box {
+    border-width: 2px !important;
+  }
+
+  /* Optimize text rendering */
+  h1, h2, h3, p, span {
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Force background colors */
+  .bg-semantic-social,
+  .bg-neutral-warm-white,
+  .bg-neutral-cream {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}

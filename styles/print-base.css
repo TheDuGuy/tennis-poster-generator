@@ -1,0 +1,61 @@
+/**
+ * Global Print CSS Foundation
+ * Applied to all poster types for consistent print output
+ */
+
+@page {
+  size: A4 portrait;
+  margin: 15mm 10mm 15mm 10mm;
+}
+
+@media print {
+  /* Ensure exact A4 dimensions */
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  /* Hide UI elements */
+  .no-print,
+  button,
+  input,
+  select,
+  textarea,
+  form {
+    display: none !important;
+  }
+
+  /* Force colors to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Prevent page breaks in critical areas */
+  .poster-content,
+  .poster-header {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Ensure crisp text */
+  body, p, span, div {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Remove any shadows or effects that might not print well */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

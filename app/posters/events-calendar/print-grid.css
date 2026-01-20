@@ -1,0 +1,71 @@
+@media print {
+  /* Hide form and UI elements */
+  .no-print,
+  form,
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  /* Ensure poster fills the page in LANDSCAPE */
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
+  html, body {
+    width: 297mm;
+    height: 210mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Ensure poster container takes full page */
+  .poster-container {
+    width: 297mm !important;
+    height: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Force background colors */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Calendar table optimization */
+  table {
+    border-collapse: collapse !important;
+    page-break-inside: avoid !important;
+  }
+
+  .calendar-row {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  td, th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Optimize text rendering */
+  h1, h2, h3, p, span {
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ensure QR code prints clearly */
+  svg {
+    shape-rendering: crispEdges;
+  }
+
+  /* Make sure sidebar prints with background */
+  .sidebar {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

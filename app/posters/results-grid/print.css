@@ -1,0 +1,54 @@
+@media print {
+  /* Hide form and UI elements */
+  .no-print,
+  form,
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  /* Ensure poster fills the page */
+  .poster-container {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Optimize table for handwriting */
+  table {
+    border-collapse: collapse !important;
+  }
+
+  td, th {
+    border: 1px solid #999 !important;
+  }
+
+  /* Make dotted lines more subtle (60% opacity) */
+  .border-dotted {
+    opacity: 0.6;
+  }
+
+  /* Make placeholder text very light so it doesn't interfere with handwriting */
+  .text-gray-300 {
+    opacity: 0.3;
+  }
+
+  /* Ensure minimum cell height for handwriting */
+  .handwriting-row td {
+    min-height: 20mm;
+    height: 20mm;
+  }
+
+  /* Optimize text rendering */
+  h1, h2, h3, p, span {
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ensure QR code prints clearly */
+  svg {
+    shape-rendering: crispEdges;
+  }
+}
