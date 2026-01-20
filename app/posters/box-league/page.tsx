@@ -474,11 +474,11 @@ export default function BoxLeaguePage() {
                     <div className="text-xs space-y-0.5" style={{ color: '#2D4A3E' }}>
                       <div className="flex items-center gap-1">
                         <span style={{ color: '#D0E04D' }}>●</span>
-                        <span>Men's Singles</span>
+                        <span>Men&apos;s Singles</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <span style={{ color: '#D0E04D' }}>●</span>
-                        <span>Women's Singles</span>
+                        <span>Women&apos;s Singles</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <span style={{ color: '#D0E04D' }}>●</span>
