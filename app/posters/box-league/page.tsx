@@ -416,13 +416,13 @@ export default function BoxLeaguePage() {
                               <div className="col-span-2 border-b border-dotted border-gray-400 h-4"></div>
                               <div className="flex gap-0.5 col-span-3 justify-center">
                                 {/* Each set box divided vertically for player 1 (left) and player 2 (right) scores */}
-                                <div className="w-5 h-5 border border-gray-400 rounded flex items-center justify-center relative">
+                                <div className="w-9 h-5 border border-gray-400 rounded flex items-center justify-center relative">
                                   <div className="absolute h-3 w-px bg-gray-400" style={{ left: '50%', transform: 'translateX(-50%)' }}></div>
                                 </div>
-                                <div className="w-5 h-5 border border-gray-400 rounded flex items-center justify-center relative">
+                                <div className="w-9 h-5 border border-gray-400 rounded flex items-center justify-center relative">
                                   <div className="absolute h-3 w-px bg-gray-400" style={{ left: '50%', transform: 'translateX(-50%)' }}></div>
                                 </div>
-                                <div className="w-5 h-5 border border-gray-400 rounded flex items-center justify-center relative">
+                                <div className="w-9 h-5 border border-gray-400 rounded flex items-center justify-center relative">
                                   <div className="absolute h-3 w-px bg-gray-400" style={{ left: '50%', transform: 'translateX(-50%)' }}></div>
                                 </div>
                               </div>
