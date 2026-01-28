@@ -42,10 +42,11 @@ type BoxLeagueData = {
 const defaultData: BoxLeagueData = {
   group1: {
     players: [
-      { name: '' },
-      { name: '' },
-      { name: '' },
-      { name: '' },
+      { name: 'Will Alkin' },
+      { name: 'Alex Goodworth' },
+      { name: 'AA AA' },
+      { name: 'Pete Snow' },
+      { name: 'Edou Mota' },
     ],
     results: [
       { player1: '', player2: '', score1Set1: '', score2Set1: '', score1Set2: '', score2Set2: '', score1Set3: '', score2Set3: '' },
@@ -63,10 +64,11 @@ const defaultData: BoxLeagueData = {
   },
   group2: {
     players: [
-      { name: '' },
-      { name: '' },
-      { name: '' },
-      { name: '' },
+      { name: 'Steven Mooney' },
+      { name: 'Adam Hughes' },
+      { name: 'Ian Lloyd' },
+      { name: 'Amanda Payne-Cook' },
+      { name: 'Max De Lucia' },
     ],
     results: [
       { player1: '', player2: '', score1Set1: '', score2Set1: '', score1Set2: '', score2Set2: '', score1Set3: '', score2Set3: '' },
@@ -84,10 +86,11 @@ const defaultData: BoxLeagueData = {
   },
   group3: {
     players: [
-      { name: '' },
-      { name: '' },
-      { name: '' },
-      { name: '' },
+      { name: 'Rob Fox' },
+      { name: 'Lucy Harford' },
+      { name: 'Russell Wheldon' },
+      { name: 'Paul Lyons' },
+      { name: 'Philip Bishop' },
     ],
     results: [
       { player1: '', player2: '', score1Set1: '', score2Set1: '', score1Set2: '', score2Set2: '', score1Set3: '', score2Set3: '' },
@@ -111,6 +114,22 @@ export default function BoxLeaguePage() {
   const [selectedGroup, setSelectedGroup] = useState<'group1' | 'group2' | 'group3'>('group1');
   const [isEditing, setIsEditing] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  // Helper function to format player name with bold surname
+  const formatPlayerName = (name: string) => {
+    if (!name) return null;
+    const parts = name.trim().split(' ');
+    if (parts.length === 1) {
+      return <span className="font-bold">{name}</span>;
+    }
+    const firstName = parts.slice(0, -1).join(' ');
+    const surname = parts[parts.length - 1];
+    return (
+      <>
+        {firstName} <span className="font-bold">{surname}</span>
+      </>
+    );
+  };
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -382,7 +401,7 @@ export default function BoxLeaguePage() {
                       <p className="text-xs font-bold mb-1" style={{ color: '#2D4A3E' }}>Players:</p>
                       {group.players?.map((player, idx) => (
                         <div key={idx} className="text-xs py-0.5" style={{ color: '#2D4A3E' }}>
-                          {player.name || `Player ${idx + 1}`}
+                          {player.name ? formatPlayerName(player.name) : `Player ${idx + 1}`}
                         </div>
                       ))}
                     </div>
@@ -396,9 +415,16 @@ export default function BoxLeaguePage() {
                             <div className="grid grid-cols-7 gap-0.5 items-center">
                               <div className="col-span-2 border-b border-dotted border-gray-400 h-4"></div>
                               <div className="flex gap-0.5 col-span-3 justify-center">
-                                <div className="w-5 h-5 border border-gray-400 rounded text-center text-xs"></div>
-                                <div className="w-5 h-5 border border-gray-400 rounded text-center text-xs"></div>
-                                <div className="w-5 h-5 border border-gray-400 rounded text-center text-xs"></div>
+                                {/* Each set box divided vertically for player 1 (left) and player 2 (right) scores */}
+                                <div className="w-5 h-5 border border-gray-400 rounded flex items-center justify-center relative">
+                                  <div className="absolute h-3 w-px bg-gray-400" style={{ left: '50%', transform: 'translateX(-50%)' }}></div>
+                                </div>
+                                <div className="w-5 h-5 border border-gray-400 rounded flex items-center justify-center relative">
+                                  <div className="absolute h-3 w-px bg-gray-400" style={{ left: '50%', transform: 'translateX(-50%)' }}></div>
+                                </div>
+                                <div className="w-5 h-5 border border-gray-400 rounded flex items-center justify-center relative">
+                                  <div className="absolute h-3 w-px bg-gray-400" style={{ left: '50%', transform: 'translateX(-50%)' }}></div>
+                                </div>
                               </div>
                               <div className="col-span-2 border-b border-dotted border-gray-400 h-4"></div>
                             </div>
