@@ -106,7 +106,7 @@ const defaultData: BoxLeagueData = {
       { player1: '', player2: '', date: '' },
     ],
   },
-  ltaUrl: 'https://competitions.lta.org.uk/',
+  ltaUrl: 'https://competitions.lta.org.uk/box-ladder/07fa2622-1b67-4e5e-a4a8-a7a626b4e090/event/1/round/24',
 };
 
 export default function BoxLeaguePage() {
