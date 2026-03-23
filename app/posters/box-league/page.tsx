@@ -115,7 +115,8 @@ export default function BoxLeaguePage() {
       try {
         const parsed = JSON.parse(saved);
         if (parsed.group1 && parsed.group2 && parsed.group3) {
-          setData(parsed);
+          // Merge with defaults so any new fields are populated
+          setData({ ...defaultData, ...parsed });
         }
       } catch (e) {
         console.error('Failed to load saved data', e);
