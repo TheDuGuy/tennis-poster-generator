@@ -33,6 +33,8 @@ type BoxLeagueData = {
   group2: GroupData;
   group3: GroupData;
   ltaUrl: string;
+  round: string;
+  dateRange: string;
 };
 
 const defaultData: BoxLeagueData = {
@@ -78,6 +80,8 @@ const defaultData: BoxLeagueData = {
     ],
   },
   ltaUrl: 'https://competitions.lta.org.uk/box-ladder/07fa2622-1b67-4e5e-a4a8-a7a626b4e090/event/1/round/25',
+  round: 'Round 25',
+  dateRange: '2 Mar – 26 Apr',
 };
 
 // Compute positions (rank by points desc, then wins desc)
@@ -456,16 +460,40 @@ export default function BoxLeaguePage() {
               </div>
             </div>
 
-            {/* LTA URL */}
-            <div className="border-t pt-4">
-              <label className="block text-sm font-semibold mb-1">LTA Box League URL (for QR code)</label>
-              <input
-                type="text"
-                value={data.ltaUrl}
-                onChange={(e) => setData({ ...data, ltaUrl: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg text-sm"
-                placeholder="https://competitions.lta.org.uk/..."
-              />
+            {/* Round info + LTA URL */}
+            <div className="border-t pt-4 space-y-3">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Round</label>
+                  <input
+                    type="text"
+                    value={data.round}
+                    onChange={(e) => setData({ ...data, round: e.target.value })}
+                    className="w-full px-3 py-2 border rounded-lg text-sm"
+                    placeholder="Round 25"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Date Range</label>
+                  <input
+                    type="text"
+                    value={data.dateRange}
+                    onChange={(e) => setData({ ...data, dateRange: e.target.value })}
+                    className="w-full px-3 py-2 border rounded-lg text-sm"
+                    placeholder="2 Mar – 26 Apr"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-1">LTA Box League URL (for QR code)</label>
+                <input
+                  type="text"
+                  value={data.ltaUrl}
+                  onChange={(e) => setData({ ...data, ltaUrl: e.target.value })}
+                  className="w-full px-3 py-2 border rounded-lg text-sm"
+                  placeholder="https://competitions.lta.org.uk/..."
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -506,6 +534,9 @@ export default function BoxLeaguePage() {
                 </h1>
                 <p className="text-base mt-1 font-semibold" style={{ color: '#D0E04D', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
                   League Tables & Latest Results
+                </p>
+                <p className="text-sm mt-1 font-semibold" style={{ color: 'white' }}>
+                  {data.round} · {data.dateRange}
                 </p>
 
                 {/* Tennis Ball Bounce */}
