@@ -189,7 +189,8 @@ export default function BoxLeaguePage() {
   // ── Poster group card ─────────────────────────────────────────────────────
   const GroupCard = ({ groupKey, groupIdx }: { groupKey: 'group1' | 'group2' | 'group3'; groupIdx: number }) => {
     const group = data[groupKey];
-    const positions = getPositions(group.standings);
+    const sorted = [...group.standings].sort((a, b) => b.points - a.points || b.wins - a.wins);
+    const positions = getPositions(sorted);
 
     return (
       <div className="bg-white rounded-lg p-2.5" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}>
@@ -210,7 +211,7 @@ export default function BoxLeaguePage() {
           </div>
 
           {/* Standing rows */}
-          {group.standings.map((s, idx) => {
+          {sorted.map((s, idx) => {
             const pos = positions[idx];
             const isTop = pos === 1;
             return (
