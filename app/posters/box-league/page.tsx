@@ -88,7 +88,7 @@ const defaultData: BoxLeagueData = {
 function getPositions(standings: Standing[]): number[] {
   const sorted = standings
     .map((s, i) => ({ ...s, originalIndex: i }))
-    .sort((a, b) => b.points - a.points || b.wins - a.wins);
+    .sort((a, b) => b.points - a.points || a.losses - b.losses || b.wins - a.wins);
 
   const positions = new Array(standings.length).fill(0);
   let pos = 1;
@@ -189,7 +189,7 @@ export default function BoxLeaguePage() {
   // ── Poster group card ─────────────────────────────────────────────────────
   const GroupCard = ({ groupKey, groupIdx }: { groupKey: 'group1' | 'group2' | 'group3'; groupIdx: number }) => {
     const group = data[groupKey];
-    const sorted = [...group.standings].sort((a, b) => b.points - a.points || b.wins - a.wins);
+    const sorted = [...group.standings].sort((a, b) => b.points - a.points || a.losses - b.losses || b.wins - a.wins);
     const positions = getPositions(sorted);
 
     return (
