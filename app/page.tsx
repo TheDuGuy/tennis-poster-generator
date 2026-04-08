@@ -5,12 +5,21 @@ export default function HomePage() {
   const posters = [
     {
       id: 'events-2026',
-      title: '🎯 2026 Events - Print Ready',
-      description: 'Beautiful static poster with all your 2026 events hardcoded. Just click print - no editing needed! Deep green with timeline layout.',
+      title: '🎯 2026 Events - Landscape',
+      description: 'Beautiful static poster with all your 2026 events. Deep green with tennis court background.',
       location: '⭐ RECOMMENDED - Ready to Print',
       color: '#3E5F4F',
-      updateMethod: 'Static - Just Print!',
+      updateMethod: 'Editable + Print',
       href: '/posters/events-2026',
+    },
+    {
+      id: 'events-2026-portrait',
+      title: '🎯 2026 Events - Portrait (Save the Date)',
+      description: 'Portrait A4 save the date poster with all 2026 events. Same design, 2-column layout.',
+      location: '⭐ RECOMMENDED - Ready to Print',
+      color: '#3E5F4F',
+      updateMethod: 'Editable + Print',
+      href: '/posters/events-2026-portrait',
     },
     {
       id: 'events-hero',
