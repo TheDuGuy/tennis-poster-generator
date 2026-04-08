@@ -114,6 +114,12 @@ const defaultData: BoxLeagueData = {
   group1: {
     players: ['Edou Mota', 'Will Alkin', 'Alex Goodworth', 'AA AA', 'Adam Hughes', 'Pete Snow'],
     results: [
+      { player1: 'Edou Mota', player2: 'Will Alkin', player1Score: ['7', '6'], player2Score: ['6', '4'], date: 'Wed 08/04/2026', winner: 1 },
+      { player1: 'Will Alkin', player2: 'Alex Goodworth', player1Score: ['6', '2', '10'], player2Score: ['4', '6', '8'], date: 'Tue 07/04/2026', winner: 1 },
+      { player1: 'Edou Mota', player2: 'Adam Hughes', player1Score: ['6', '6'], player2Score: ['1', '3'], date: 'Mon 06/04/2026', winner: 1 },
+      { player1: 'Alex Goodworth', player2: 'Pete Snow', player1Score: ['6', '6'], player2Score: ['3', '3'], date: 'Fri 03/04/2026', winner: 1 },
+      { player1: 'Alex Goodworth', player2: 'Edou Mota', player1Score: ['3', '3'], player2Score: ['6', '6'], date: 'Wed 01/04/2026', winner: 2 },
+      { player1: 'Pete Snow', player2: 'Adam Hughes', player1Score: ['6', '7'], player2Score: ['4', '6'], date: 'Tue 24/03/2026', winner: 1 },
       { player1: 'Pete Snow', player2: 'Edou Mota', player1Score: ['0', '6', '3'], player2Score: ['6', '3', '10'], date: 'Sat 21/03/2026', winner: 2 },
       { player1: 'Will Alkin', player2: 'Pete Snow', player1Score: ['7', '5', '10'], player2Score: ['6', '7', '6'], date: 'Tue 10/03/2026', winner: 1 },
     ],
@@ -121,13 +127,20 @@ const defaultData: BoxLeagueData = {
   group2: {
     players: ['Rob Fox', 'Steven Mooney', 'Ian Lloyd', 'Max De Lucia', 'Amanda Payne-Cook', 'Philip Bishop'],
     results: [
+      { player1: 'Steven Mooney', player2: 'Philip Bishop', player1Score: ['6', '6'], player2Score: ['3', '0'], date: 'Tue 07/04/2026', winner: 1 },
+      { player1: 'Amanda Payne-Cook', player2: 'Rob Fox', player1Score: ['3', '4'], player2Score: ['6', '6'], date: 'Fri 27/03/2026', winner: 2 },
+      { player1: 'Rob Fox', player2: 'Max De Lucia', player1Score: ['6', '5', '9'], player2Score: ['1', '7', '11'], date: 'Mon 23/03/2026', winner: 2 },
       { player1: 'Rob Fox', player2: 'Philip Bishop', player1Score: ['3', '6', '10'], player2Score: ['6', '3', '4'], date: 'Tue 10/03/2026', winner: 1 },
-      { player1: 'Max De Lucia', player2: 'Rob Fox', player1Score: ['1', '7', '10'], player2Score: ['6', '5', '9'], date: 'Fri 20/03/2026', winner: 1 },
     ],
   },
   group3: {
-    players: ['Ben Irving', 'Russell Wheldon', 'Paul Lyons', 'Jane Crane', 'Lucy Harford', 'Mark Gallagher', 'Dave Cale'],
+    players: ['Ben Irving', 'Russell Wheldon', 'Paul Lyons', 'Jane Crane', 'Lucy Harford', 'mark gallagher', 'Dave Cale', 'Tracey CRAMPTON'],
     results: [
+      { player1: 'Jane Crane', player2: 'Tracey CRAMPTON', player1Score: ['6', '5', '5'], player2Score: ['4', '7', '10'], date: 'Wed 08/04/2026', winner: 2 },
+      { player1: 'mark gallagher', player2: 'Tracey CRAMPTON', player1Score: ['6', '6'], player2Score: ['1', '3'], date: 'Wed 08/04/2026', winner: 1 },
+      { player1: 'Dave Cale', player2: 'mark gallagher', player1Score: ['6', '6'], player2Score: ['0', '1'], date: 'Sat 04/04/2026', winner: 1 },
+      { player1: 'Russell Wheldon', player2: 'Lucy Harford', player1Score: ['6', '6'], player2Score: ['0', '1'], date: 'Tue 31/03/2026', winner: 1 },
+      { player1: 'Lucy Harford', player2: 'Jane Crane', player1Score: ['6', '6'], player2Score: ['1', '0'], date: 'Tue 24/03/2026', winner: 1 },
       { player1: 'Ben Irving', player2: 'Dave Cale', player1Score: ['6', '6'], player2Score: ['4', '4'], date: 'Sat 07/03/2026', winner: 1 },
     ],
   },
@@ -143,7 +156,7 @@ export default function BoxLeaguePage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('tennis-poster-box-league-v3');
+    const saved = localStorage.getItem('tennis-poster-box-league-v4');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -159,7 +172,7 @@ export default function BoxLeaguePage() {
 
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem('tennis-poster-box-league-v3', JSON.stringify(data));
+      localStorage.setItem('tennis-poster-box-league-v4', JSON.stringify(data));
     }
   }, [data, isLoaded]);
 
@@ -257,10 +270,10 @@ export default function BoxLeaguePage() {
             <p className="text-[8px] font-bold uppercase mb-1" style={{ color: '#2D4A3E', borderTop: '1px solid #e5e7eb', paddingTop: '4px' }}>
               Latest Results
             </p>
-            <div className="space-y-1">
-              {group.results.slice(0, 3).map((r, idx) => (
+            <div className="space-y-0.5">
+              {group.results.slice(0, 5).map((r, idx) => (
                 <div key={idx} className="rounded" style={{ border: '1px solid #e5e7eb', fontSize: '8px' }}>
-                  <div className="flex items-center justify-between px-1.5 py-0.5">
+                  <div className="flex items-center justify-between px-1.5" style={{ paddingTop: '2px', paddingBottom: '1px' }}>
                     <span className={r.winner === 1 ? 'font-bold' : ''} style={{ color: '#2D4A3E' }}>{r.player1 || '—'}</span>
                     <div className="flex gap-0.5 ml-1">
                       {r.player1Score.filter(s => s !== '').map((s, i) => (
@@ -269,7 +282,7 @@ export default function BoxLeaguePage() {
                     </div>
                   </div>
                   <div style={{ height: '1px', backgroundColor: '#f0f0f0', margin: '0 4px' }} />
-                  <div className="flex items-center justify-between px-1.5 py-0.5">
+                  <div className="flex items-center justify-between px-1.5" style={{ paddingTop: '1px', paddingBottom: '1px' }}>
                     <span className={r.winner === 2 ? 'font-bold' : ''} style={{ color: '#2D4A3E' }}>{r.player2 || '—'}</span>
                     <div className="flex gap-0.5 ml-1">
                       {r.player2Score.filter(s => s !== '').map((s, i) => (
@@ -277,7 +290,7 @@ export default function BoxLeaguePage() {
                       ))}
                     </div>
                   </div>
-                  <div className="px-1.5 py-0.5" style={{ backgroundColor: '#f9f9f9', borderTop: '1px solid #f0f0f0' }}>
+                  <div className="px-1.5" style={{ backgroundColor: '#f9f9f9', borderTop: '1px solid #f0f0f0', paddingTop: '1px', paddingBottom: '1px' }}>
                     <span style={{ color: '#888', fontSize: '7px' }}>{r.date}</span>
                   </div>
                 </div>
@@ -526,17 +539,28 @@ export default function BoxLeaguePage() {
               <GroupCard groupKey="group3" groupIdx={2} />
             </div>
 
-            {/* Info Panel */}
-            <div className="mb-2">
-              <div className="bg-white bg-opacity-95 rounded-lg p-2" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
-                <div className="grid grid-cols-3 gap-4">
+            {/* Combined Bottom Strip */}
+            <div className="flex items-stretch gap-2">
+              {/* QR Code */}
+              <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-1.5" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)', flexShrink: 0 }}>
+                <QRCodeSVG value={data.ltaUrl} size={38} level="H" />
+                <div>
+                  <p className="text-[9px] font-bold" style={{ color: '#2D4A3E' }}>Scan to view the</p>
+                  <p className="text-[9px] font-bold" style={{ color: '#2D4A3E' }}>latest tables & fixtures</p>
+                </div>
+              </div>
+
+              {/* Info Panel */}
+              <div className="flex-1 bg-white bg-opacity-95 rounded-lg px-3 py-1.5" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+                <p className="text-center text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>All Levels Welcome</p>
+                <div className="grid grid-cols-3 gap-3">
                   <div>
-                    <h3 className="text-xs font-black uppercase mb-1" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>What is the Box League?</h3>
-                    <p className="text-xs leading-tight" style={{ color: '#2D4A3E' }}>A flexible singles league where you play others at a similar level. Arrange matches at times that suit you and move up or down boxes based on results.</p>
+                    <h3 className="text-[9px] font-black uppercase mb-0.5" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>What is the Box League?</h3>
+                    <p className="text-[8px] leading-tight" style={{ color: '#2D4A3E' }}>A flexible singles league where you play others at a similar level. Arrange matches at times that suit you and move up or down boxes based on results.</p>
                   </div>
                   <div>
-                    <h3 className="text-xs font-black uppercase mb-1" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>Why Join?</h3>
-                    <div className="space-y-0.5 text-xs" style={{ color: '#2D4A3E' }}>
+                    <h3 className="text-[9px] font-black uppercase mb-0.5" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>Why Join?</h3>
+                    <div className="space-y-0 text-[8px]" style={{ color: '#2D4A3E' }}>
                       <div className="flex items-center gap-1"><span>🎾</span><span>Competitive but friendly</span></div>
                       <div className="flex items-center gap-1"><span>🤝</span><span>Meet club members</span></div>
                       <div className="flex items-center gap-1"><span>📅</span><span>Play at your times</span></div>
@@ -544,33 +568,23 @@ export default function BoxLeaguePage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xs font-black uppercase mb-1" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>Who Can Join?</h3>
-                    <div className="text-xs space-y-0.5" style={{ color: '#2D4A3E' }}>
+                    <h3 className="text-[9px] font-black uppercase mb-0.5" style={{ color: '#2D4A3E', fontFamily: 'var(--font-montserrat)' }}>Who Can Join?</h3>
+                    <div className="text-[8px] space-y-0" style={{ color: '#2D4A3E' }}>
                       <div className="flex items-center gap-1"><span style={{ color: '#D0E04D' }}>●</span><span>Men&apos;s Singles</span></div>
                       <div className="flex items-center gap-1"><span style={{ color: '#D0E04D' }}>●</span><span>Women&apos;s Singles</span></div>
                       <div className="flex items-center gap-1"><span style={{ color: '#D0E04D' }}>●</span><span>Mixed/Combi (coming soon)</span></div>
-                      <p className="mt-1 text-xs italic" style={{ opacity: 0.8 }}>New players welcome — boxes are based on level</p>
+                      <p className="text-[7px] italic mt-0.5" style={{ opacity: 0.8 }}>New players welcome — boxes are based on level</p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 bg-white rounded-lg px-4 py-2" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
-                <QRCodeSVG value={data.ltaUrl} size={46} level="H" />
+              {/* Email */}
+              <div className="flex items-center px-3 py-1.5 rounded-lg bg-white" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)', flexShrink: 0 }}>
                 <div>
-                  <p className="text-xs font-bold" style={{ color: '#2D4A3E' }}>Scan to view the</p>
-                  <p className="text-xs font-bold" style={{ color: '#2D4A3E' }}>latest tables & fixtures</p>
+                  <p className="text-[9px] font-bold" style={{ color: '#2D4A3E' }}>To join, email:</p>
+                  <p className="text-[9px] font-bold" style={{ color: '#2D4A3E' }}>tennis@mardensportsclub.com</p>
                 </div>
-              </div>
-              <div className="text-center">
-                <p className="text-lg font-black uppercase tracking-widest" style={{ color: 'white', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>All Levels Welcome</p>
-              </div>
-              <div className="px-4 py-2 rounded-lg bg-white" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
-                <p className="text-xs font-bold" style={{ color: '#2D4A3E' }}>To join, email:</p>
-                <p className="text-xs font-bold" style={{ color: '#2D4A3E' }}>tennis@mardensportsclub.com</p>
               </div>
             </div>
           </div>
